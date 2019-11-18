@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-int octfunc(int x);
-int hexafunc(int y);
+void octfunc(int x);
+void hexafunc(int y);
 
 int main()
 {
@@ -12,7 +10,7 @@ int main()
 	int binary[32]; //2진수 값을 저장할 binary배열 선언
 	int rbinary; //최종 2진수 값
 	int r=1;
-	int i,j;
+	int i;
 
 	printf("10진수 값을 입력하시오.: ");
 	scanf("%d", &input);  //사용자의 입력을 input 변수에 담는다.
@@ -25,12 +23,12 @@ int main()
 		binary[i] = input & mask ? 1 : 0;  // mask와 정수 input을 &연산해서 참이면 1, 거짓이면 0을 binary배열에 저장
 
 	}
-	for (j = 31; j >= 0; j--) {
+	for (i = 31; i >= 0; i--) {
 		
-		printf("%d", binary[j]); //2진수 값 하나씩 출력
-		if (j % 8 == 0) printf(" ");
+		printf("%d", binary[i]); //2진수 값 하나씩 출력
+		if (i % 8 == 0) printf(" ");
 		r = r * 10;
-		rbinary += binary[j] * r; // 2진수를 rbinary 변수에 저장
+		rbinary += binary[i] * r; // 2진수를 rbinary 변수에 저장
 	}
 
 	printf("\n");
@@ -39,9 +37,11 @@ int main()
 	octfunc(rbinary); //2진수를 8진수로 변환하는 함수
 	hexafunc(rbinary);  //2진수를 16진수로 변환하는 함수
 
+	return 0;
+
 }
 
-int octfunc(int x) {
+void octfunc(int x) {
 		int octalConstant[] = { 0, 1, 10, 11, 100, 101, 110, 111 };
 
 		int octal, tempBinary;
@@ -82,7 +82,7 @@ int octfunc(int x) {
 
 }
 	
-int hexafunc(int y) {
+void hexafunc(int y) {
 		int hexaConstant[] = { 0, 1, 10, 11, 100, 101, 110, 111,1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111 };
 
 		char hexa;
